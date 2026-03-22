@@ -296,139 +296,304 @@ String paginaConfiguracion() {
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>FALLBAND - Configuración</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Playfair Display', 'Segoe UI', 'Georgia', serif;
+            background: radial-gradient(circle at 10% 20%, #0a0a0a 0%, #1a1a2e 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+        
+        /* Efecto de fondo sutil */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(212,175,55,0.05)" stroke-width="0.5" d="M10 10 L90 10 M10 20 L90 20 M10 30 L90 30 M10 40 L90 40 M10 50 L90 50 M10 60 L90 60 M10 70 L90 70 M10 80 L90 80 M10 90 L90 90 M10 10 L10 90 M20 10 L20 90 M30 10 L30 90 M40 10 L40 90 M50 10 L50 90 M60 10 L60 90 M70 10 L70 90 M80 10 L80 90 M90 10 L90 90"/></svg>');
+            background-size: 30px 30px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
         .container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 450px;
+            background: rgba(10, 10, 18, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.2), 0 0 0 4px rgba(0,0,0,0.3);
+            max-width: 480px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
         }
-        h1 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.8em;
+        
+        .container:hover {
+            transform: translateY(-5px);
         }
+        
+        /* Detalles dorados decorativos */
+        .container::before,
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(212,175,55,0.3);
+            pointer-events: none;
+        }
+        
+        .container::before {
+            top: 15px;
+            left: 15px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .container::after {
+            bottom: 15px;
+            right: 15px;
+            border-left: none;
+            border-top: none;
+        }
+        
         .logo {
-            font-size: 3em;
-            margin-bottom: 10px;
+            font-size: 4.5em;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(212,175,55,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
         }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(212,175,55,0.3); }
+            to { text-shadow: 0 0 25px rgba(212,175,55,0.8); }
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #d4af37 0%, #f5e7a3 50%, #b8860b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
         .subtitle {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 0.9em;
+            color: #9a8c6f;
+            margin-bottom: 30px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            display: inline-block;
+            padding-bottom: 5px;
         }
+        
         .form-group {
-            margin: 18px 0;
+            margin: 22px 0;
             text-align: left;
         }
+        
         label {
             display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
-            font-size: 0.9em;
+            margin-bottom: 8px;
+            color: #e5d5a8;
+            font-weight: 500;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
+        
         input {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s;
+            padding: 14px 18px;
+            background: rgba(20, 20, 30, 0.8);
+            border: 1.5px solid rgba(212,175,55,0.4);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            color: #fff;
+            transition: all 0.3s ease;
         }
+        
         input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+            background: rgba(30, 30, 45, 0.9);
         }
+        
+        input::placeholder {
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+        }
+        
         button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #b8860b 0%, #d4af37 50%, #f5e7a3 100%);
+            color: #1a1a2e;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 30px;
             font-size: 1.1em;
-            border-radius: 25px;
+            font-weight: bold;
+            border-radius: 40px;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
-            transition: transform 0.2s;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: inherit;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
+        
         button:hover {
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.4);
+            background: linear-gradient(135deg, #d4af37 0%, #f5e7a3 50%, #ffd700 100%);
         }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
         .info {
-            margin-top: 20px;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212,175,55,0.2);
             font-size: 0.7em;
-            color: #666;
+            color: #8a7a5a;
         }
+        
+        .info p {
+            margin: 5px 0;
+        }
+        
+        .info strong {
+            color: #d4af37;
+            font-weight: 600;
+        }
+        
         .message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
             display: none;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            animation: fadeIn 0.5s ease;
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: rgba(30, 70, 40, 0.9);
+            color: #d4ffb0;
+            border: 1px solid #d4af37;
+            backdrop-filter: blur(5px);
         }
+        
         .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: rgba(70, 30, 30, 0.9);
+            color: #ffb0b0;
+            border: 1px solid #b8860b;
+            backdrop-filter: blur(5px);
         }
+        
         .required {
-            color: red;
+            color: #d4af37;
+            font-size: 1.1em;
+            margin-left: 3px;
+        }
+        
+        /* Efecto de brillo en los campos */
+        input:focus {
+            animation: pulse 0.5s ease;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.2); }
+            100% { box-shadow: 0 0 0 5px rgba(212,175,55,0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 550px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .logo {
+                font-size: 3.5em;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+        
+        /* Decoración adicional con líneas doradas */
+        .gold-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 15px auto;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">🕐</div>
-        <h1>FALLBAND CLOCK</h1>
-        <div class="subtitle">Configura tu dispositivo</div>
+        <div class="logo">⌚</div>
+        <h1>FALLBAND</h1>
+        <div class="gold-line"></div>
+        <div class="subtitle">Configuración de lujo</div>
         
         <form id="configForm">
             <div class="form-group">
-                <label>📶 Nombre de la red WiFi <span class="required">*</span></label>
-                <input type="text" id="ssid" required placeholder="Ej: MiWiFi_2.4G">
+                <label>📡 Red WiFi <span class="required">*</span></label>
+                <input type="text" id="ssid" required placeholder="SSID de tu red">
             </div>
             <div class="form-group">
-                <label>🔐 Contraseña WiFi</label>
-                <input type="password" id="password" placeholder="Contraseña de la red">
+                <label>🔑 Contraseña</label>
+                <input type="password" id="password" placeholder="••••••••">
             </div>
             <div class="form-group">
-                <label>📱 Número de teléfono <span class="required">*</span></label>
-                <input type="tel" id="telefono" required placeholder="Ej: 5512345678">
+                <label>📱 Teléfono <span class="required">*</span></label>
+                <input type="tel" id="telefono" required placeholder="Número de contacto">
             </div>
             <div class="form-group">
-                <label>📧 Correo electrónico <span class="required">*</span></label>
+                <label>✉️ Correo <span class="required">*</span></label>
                 <input type="email" id="correo" required placeholder="tu@email.com">
             </div>
-            <button type="submit">Registrar y Conectar</button>
+            <button type="submit">✦ REGISTRAR Y CONECTAR ✦</button>
         </form>
         
         <div id="message" class="message"></div>
         
         <div class="info">
-            <p>🔌 Red de configuración: <strong>FALLBAND_SETUP</strong></p>
-            <p>🔑 Contraseña: <strong>12345678</strong></p>
-            <p>⚠️ Solo redes 2.4GHz</p>
+            <p>🔌 <strong>FALLBAND_SETUP</strong> · 🔑 <strong>12345678</strong></p>
+            <p>✨ Solo redes 2.4GHz ✨</p>
+            <p style="margin-top: 10px; font-size: 0.65em;">Reloj de colección | Edición limitada</p>
         </div>
     </div>
     
@@ -442,19 +607,19 @@ String paginaConfiguracion() {
             const correo = document.getElementById('correo').value.trim();
             
             if(!ssid) {
-                showMessage('Por favor ingresa el nombre de la red WiFi', 'error');
+                showMessage('❖ Ingresa el nombre de la red WiFi', 'error');
                 return;
             }
             if(!telefono) {
-                showMessage('Por favor ingresa tu número de teléfono', 'error');
+                showMessage('❖ Ingresa tu número de teléfono', 'error');
                 return;
             }
             if(!correo) {
-                showMessage('Por favor ingresa tu correo electrónico', 'error');
+                showMessage('❖ Ingresa tu correo electrónico', 'error');
                 return;
             }
             
-            showMessage('Conectando y registrando...', 'success');
+            showMessage('⏳ Conectando y registrando...', 'success');
             
             try {
                 const response = await fetch('/connect', {
@@ -469,15 +634,15 @@ String paginaConfiguracion() {
                 const result = await response.text();
                 
                 if(result.includes('exitoso') || result.includes('Conectado')) {
-                    showMessage('✅ ' + result, 'success');
+                    showMessage('✓ ' + result, 'success');
                     setTimeout(() => {
                         window.location.reload();
                     }, 3000);
                 } else {
-                    showMessage('❌ ' + result, 'error');
+                    showMessage('✗ ' + result, 'error');
                 }
             } catch(err) {
-                showMessage('Error de conexión', 'error');
+                showMessage('✗ Error de conexión', 'error');
             }
         }
         
@@ -486,6 +651,19 @@ String paginaConfiguracion() {
             msgDiv.textContent = msg;
             msgDiv.className = 'message ' + type;
             msgDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                if(msgDiv.style.display === 'block' && !msg.includes('Conectado')) {
+                    // Opcional: ocultar mensajes no exitosos después de 5 segundos
+                    if(!msg.includes('Conectado')) {
+                        msgDiv.style.opacity = '0';
+                        setTimeout(() => {
+                            msgDiv.style.display = 'none';
+                            msgDiv.style.opacity = '1';
+                        }, 500);
+                    }
+                }
+            }, 5000);
         }
     </script>
 </body>
