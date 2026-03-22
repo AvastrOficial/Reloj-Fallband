@@ -88,83 +88,135 @@ Desde la página de configuración se activa un sensor de movimiento usando el *
 
 ---
 
-## 🧩 Estructura del Código
+## 🧩 Estructura del Proyecto
 
+```bash
 FALLBAND_ESP32/
-├── fallband.ino # Código principal
-├── README.md # Este archivo
-├── librerías/
-│ └── TFT_eSPI/ # Configuración de pantalla
-├── web/
-│ └── config.html # Página incrustada en el código
-└── preferences/ # Almacena credenciales
-
+├── 📄 fallband.ino        # Código principal
+├── 📘 README.md           # Documentación del proyecto
+├── 📁 librerías/
+│   └── TFT_eSPI/         # Configuración de pantalla
+├── 🌐 web/
+│   └── config.html       # Interfaz web incrustada
+└── ⚙️ preferences/       # Almacenamiento de credenciales
+```
 
 ---
 
 ## 📱 Interfaz Web de Configuración
 
-- **Estilo:** Negro con acentos dorados, gradientes y animaciones.
-- **Campos:** SSID, contraseña, teléfono, correo (todos requeridos).
-- **Sensor:** Visualización en tiempo real del ángulo del dispositivo y detección de movimiento.
-- **Alertas:** Animación visual al detectar movimiento y envío automático de correo.
+| Característica | Descripción                                               |
+| -------------- | --------------------------------------------------------- |
+| 🎨 **Estilo**  | Tema oscuro con acentos dorados, gradientes y animaciones |
+| 📝 **Campos**  | SSID, contraseña, teléfono y correo (obligatorios)        |
+| 📡 **Sensor**  | Visualización en tiempo real del ángulo y movimiento      |
+| 🚨 **Alertas** | Animaciones + envío automático de correo                  |
 
 ---
 
 ## 🔧 Configuración Personalizada
 
 ### 📌 EmailJS
-Debes tener una cuenta en [EmailJS](https://www.emailjs.com/) y configurar:
-- **Service ID:** `service_xrvdddn`
-- **Template ID:** `template_fallback` (creado por ti)
-- **Public Key:** `S278dC2zQyziLhWNb`
 
-Dentro del template puedes usar variables como `{{to_email}}`, `{{alerta_tipo}}`, `{{alerta_datos}}`, `{{alerta_fecha}}`, etc.
+Debes crear una cuenta en:
+👉 https://www.emailjs.com/
+
+**Configuración requerida:**
+
+| Parámetro   | Valor               |
+| ----------- | ------------------- |
+| Service ID  | `service_xrvdddn`   |
+| Template ID | `template_fallback` |
+| Public Key  | `S278dC2zQyziLhWNb` |
+
+**Variables disponibles en el template:**
+
+```txt
+{{to_email}}
+{{alerta_tipo}}
+{{alerta_datos}}
+{{alerta_fecha}}
+```
+
+---
 
 ### 📍 Zona Horaria
-Actualmente configurada para **México (GMT-6 con horario de verano)**:
+
+Configuración actual para **México (GMT-6 + horario de verano):**
+
 ```cpp
 const long  gmtOffset_sec      = -21600;
 const int   daylightOffset_sec = 3600;
-Puedes cambiar estos valores según tu ubicación.
 ```
 
+💡 Puedes modificar estos valores según tu ubicación.
+
+---
+
 ## 🧪 Pruebas y Reportes
-Los reportes de alertas y actividad se pueden visualizar en:
-https://fallbandreloj.foroactivo.com/h1-reportes
 
-Allí se almacenan los envíos de correo y la respuesta del sistema.
+📊 Visualiza reportes y actividad en:
 
-## 📦 Instalación en tu ESP32
-Clona este repositorio.
+🔗 https://fallbandreloj.foroactivo.com/h1-reportes
 
-Instala las librerías necesarias en el Arduino IDE o PlatformIO.
+**Incluye:**
 
-Configura User_Setup.h de TFT_eSPI para TTGO T-Display (ST7789V, 135x240, pines correctos).
+* Envíos de correo
+* Respuestas del sistema
+* Eventos detectados
 
-Sube el código al ESP32.
+---
 
-Abre el monitor serie para ver el estado de conexión.
+## 📦 Instalación en ESP32
+
+1. 📥 Clona este repositorio
+2. 📚 Instala las librerías necesarias (Arduino IDE / PlatformIO)
+3. ⚙️ Configura `User_Setup.h` de **TFT_eSPI**:
+
+   * Pantalla: **TTGO T-Display**
+   * Driver: **ST7789V**
+   * Resolución: **135x240**
+4. 🚀 Sube el código al ESP32
+5. 🔍 Abre el monitor serie para verificar conexión
+
+---
 
 ## 🚀 Próximas Mejoras
-Guardar múltiples redes WiFi.
 
-Personalizar horario de alertas.
+* 📶 Soporte para múltiples redes WiFi
+* ⏰ Configuración de horarios de alerta
+* 📊 Dashboard web con estadísticas
+* 🌡️ Integración de sensores (temperatura, humedad)
+* 🔆 Control automático de brillo
 
-Dashboard web con estadísticas.
-
-Soporte para más sensores (temperatura, humedad).
-
-Control de brillo automático.
+---
 
 ## 🤝 Contribuciones
-Las contribuciones son bienvenidas. Por favor, abre un issue o pull request para sugerir cambios.
+
+Las contribuciones son bienvenidas 🙌
+
+Puedes:
+
+* Abrir un **issue**
+* Enviar un **pull request**
+* Proponer mejoras
+
+---
 
 ## 📄 Licencia
-Este proyecto está bajo la licencia MIT. Puedes usarlo libremente, modificarlo y distribuirlo con atribución.
+
+Este proyecto está bajo la licencia **MIT**.
+✔️ Uso libre
+✔️ Modificación permitida
+✔️ Distribución con atribución
+
+---
 
 ## 📧 Contacto
-Proyecto FALLBAND
-Sitio: https://fallbandreloj.foroactivo.com/
-Foro de soporte: https://fallbandreloj.foroactivo.com/h1-reportes
+
+| Tipo       | Enlace                                           |
+| ---------- | ------------------------------------------------ |
+| 🌐 Sitio   | https://fallbandreloj.foroactivo.com/            |
+| 💬 Soporte | https://fallbandreloj.foroactivo.com/h1-reportes |
+
 
