@@ -178,7 +178,10 @@ const int   daylightOffset_sec = 3600;
    * Resolución: **135x240**
 4. 🚀 Sube el código al ESP32
 5. 🔍 Abre el monitor serie para verificar conexión
-
+6. 
+```js
+https://dl.espressif.com/dl/package_esp32_index.json
+```
 ---
 
 ## 🚀 Próximas Mejoras
