@@ -181,7 +181,8 @@ const int   daylightOffset_sec = 3600;
 
 ## 📦 paquetes de instalacion :
  * (Board) → **ESP32 Arduino**
- 
+ * 2.0.17
+
 🔗 https://www.wch.cn/downloads/CH343SER_ZIP.html
 
 ```js
