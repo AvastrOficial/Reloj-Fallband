@@ -10,8 +10,8 @@
 #include <math.h>
 
 // ─── WiFi / NTP ───────────────────────────────────────────────────────────────
-const char* ssid               = "INFINITUM09B3";
-const char* password           = "cx3FWDATq7";
+const char* ssid               = "TU WIFI";
+const char* password           = "PASSWORD WIFI";
 const char* ntpServer          = "pool.ntp.org";
 const long  gmtOffset_sec      = -21600;
 const int   daylightOffset_sec = 3600;
